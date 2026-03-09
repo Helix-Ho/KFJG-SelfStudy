@@ -34,10 +34,16 @@ def factorial(n):
     """
     # TODO: base case를 작성하세요
     # n이 0이거나 1이면 1을 반환
-    pass
+
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("'input number' must be an integer greater than or equal to 0.")
+    if n < 2:
+        return 1
     
     # TODO: recursive case를 작성하세요
-    pass
+
+    return n * factorial(n-1)
+
 
 def fibonacci(n):
     """
@@ -51,10 +57,34 @@ def fibonacci(n):
     """
     # TODO: base case를 작성하세요
     # n이 0이면 0, n이 1이면 1 반환
-    pass
+
+    if n < 2:
+        return n
     
     # TODO: recursive case를 작성하세요
-    pass
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+    
+# HACK: 피보나치 지난 계산 저장 시도
+
+class SavingFiboCalc:
+    def __init__(self):
+        self.memo = {}
+    
+    def calculate(self, n):
+        if not isinstance(n, int) or n < 0:
+            raise ValueError("'input number' must be an integer greater than or equal to 0.")
+        if n < 2:
+            return n
+        if n in self.memo:
+            return self.memo[n]
+        
+        self.memo[n] = self.calculate(n-1) + self.calculate(n-2)
+        return self.memo[n]
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -76,5 +106,12 @@ if __name__ == "__main__":
     print("=== 추가 테스트 ===")
     print(f"10! = {factorial(10)}")
     print(f"fib(15) = {fibonacci(15)}")
+    print()
 
+    print("=== 똑똑한 피보나치 수열 ===")
+    elite_fibo = SavingFiboCalc()
+    for i in range(10):
+        result = elite_fibo.calculate(i)
+        print(f"fib({i}) = {result}")
+    print()
 

@@ -77,7 +77,6 @@ def rotate_matrix_90(matrix):
         # zip은 여러 리스트의 같은 인덱스의 요소들을 짝지어주는 문법. 결과는 튜플.
         # zip의 결과 Flip Matrix의 효과가 나타남. 결과가 튜플이므로 리스트로 변환하면 최종.
     elite_rotated = [list(row) for row in zip(*matrix[::-1])]
-
     
     return rotated
     # return elite_rotated
@@ -86,6 +85,9 @@ def print_matrix(matrix):
     """배열을 보기 좋게 출력하는 헬퍼 함수"""
     for row in matrix:
         print(row)
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -116,3 +118,5 @@ if __name__ == "__main__":
     print("\n회전 후:")
     rotated2 = rotate_matrix_90(matrix2)
     print_matrix(rotated2)
+
+    

@@ -44,9 +44,50 @@ def find_two_sum_pairs(nums, target):
     ## 외부 반복문: i는 0부터 n-1까지
     ## 내부 반복문: j는 i+1부터 n까지 (중복 방지)
     ## nums[i] + nums[j]가 target과 같으면 (i, j)를 결과에 추가
-    pass  
+
+    for i in range(n):
+        for j in range(i+1,n):
+            if nums[i]+nums[j] == target:
+                pairs.append((i,j))
     
+
+    # HACK: 딕셔너리 해시태그 활용
+    # lib = dict.fromkeys(nums)
+    # for i, num in enumerate(nums):
+    #     if lib[num]:
+    #         lib[num].append(i)
+    #     else:
+    #         lib[num] = [i]
+    
+    # for i in range(n):
+    #     mate = target - nums[i]
+    #     if mate in lib:
+    #         for j in lib[mate]:
+    #             if j > i:
+    #                 pairs.append((i,j))
+
+
+    # HACK: 한방에
+    # lib = {}
+    # for i, num in enumerate(nums):
+    #     mate = target - num
+    #     # for j in lib.get(mate, []):
+    #     #     pairs.append((i,j))
+    #     if mate in lib:
+    #         for j in lib[mate]:
+    #             pairs.append((i,j))
+
+    #     # if num in lib:
+    #     #     lib[num].append(i)
+    #     # else:
+    #     #     lib[num] = [i]
+    #     lib.setdefault(num, []).append(i)
+  
+
     return pairs
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -75,5 +116,4 @@ if __name__ == "__main__":
     print(f"배열: {nums3}")
     print(f"목표 합: {target3}")
     print(f"결과 쌍: {result3}")
-
 

@@ -34,7 +34,8 @@ def combinations(n, k):
         모든 조합의 리스트
     """
     result = []
-    
+
+
     def backtrack(start, current_combination):
         """
         백트랙킹 헬퍼 함수
@@ -44,17 +45,26 @@ def combinations(n, k):
             current_combination: 현재까지 선택한 숫자들
         """
         # TODO: base case - k개를 모두 선택했으면 결과에 추가
-        pass
+
+        if len(current_combination) == k:
+            result.append(current_combination[:])
+            return
         
         # TODO: start부터 n까지 숫자를 하나씩 시도
         ## TODO: 백트랙킹 3단계 구현
         ## 1. 선택(Choose)
         ## 2. 탐색(Explore)
         ## 3. 취소(Unchoose)
-        pass
-    
+
+        for i in range(start, n - k + len(current_combination) + 2):
+            current_combination.append(i)
+            backtrack(i+1, current_combination)
+            
+            current_combination.pop()
+        
     backtrack(1, [])
     return result
+
 
 def combinations_itertools_compare(n, k):
     """
@@ -62,6 +72,9 @@ def combinations_itertools_compare(n, k):
     """
     from itertools import combinations as comb
     return [list(c) for c in comb(range(1, n+1), k)]
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":

@@ -67,6 +67,8 @@ def find_above_average_students(students):
     return average, above_average_students
 
 
+
+
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
@@ -92,5 +94,4 @@ if __name__ == "__main__":
     avg, students = find_above_average_students(students2)
     print(f"평균 점수: {avg}")
     print(f"평균 이상 학생: {students}")
-
 

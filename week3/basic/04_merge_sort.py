@@ -77,6 +77,8 @@ def merge_sort(arr):
         merge_sort_helper(arr, 0, len(arr) - 1)
     return arr
 
+
+
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1

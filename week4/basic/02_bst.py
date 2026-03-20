@@ -51,12 +51,32 @@ def search_bst(root, target):
         True/False
     """
     # TODO: root가 None이면 False 반환
-    pass
+    if root is None: return False
     
     # TODO: 값을 찾으면 True 반환
     ## target이 작으면 왼쪽 서브트리에서 검색
     ## target이 크면 오른쪽 서브트리에서 검색
-    pass
+    if target == root.value:
+        return True
+    
+    if target < root.value:
+        return search_bst(root.left, target)
+    else:
+        return search_bst(root.right, target)
+
+
+# HACK: 반복문
+def search_bst2(root, target):
+    while root:
+        if root.value == target:
+            return True
+        elif root.value < target:
+            root = root.right
+        else:
+            root = root.left
+    return False
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -77,7 +97,7 @@ if __name__ == "__main__":
     
     test_values = [2, 4, 5, 6, 7]
     for val in test_values:
-        result = search_bst(root, val)
+        result = search_bst2(root, val)
         print(f"값 {val} 검색: {result}")
 
 

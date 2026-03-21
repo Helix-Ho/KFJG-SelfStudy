@@ -43,16 +43,35 @@ def dfs(graph, start, visited=None):
         방문 순서 리스트
     """
     # TODO: visited가 None이면 초기화
-    pass
+    if not visited: visited = []
     
     # TODO: 현재 정점 방문
-    pass
+    visited.append(start)
     
     # TODO: 인접한 정점들에 대해 재귀
     ## 방문하지 않은 정점이면 재귀 호출
-    pass
+    for val in graph[start]:
+        if val not in visited:
+            dfs(graph, val, visited)
     
     return visited
+
+
+def dfs2(graph, start, visited=None):
+    visited = {start}
+    stack = [start]
+    result = []
+
+    while stack:
+        curr = stack.pop()
+        result.append(curr)
+        search = [val for val in graph[curr] if val not in visited]
+        visited.update(search)
+        stack.extend(search[::-1])
+
+    return result
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -65,7 +84,7 @@ if __name__ == "__main__":
     }
     
     print("=== DFS (깊이 우선 탐색) ===")
-    result = dfs(graph, 0)
+    result = dfs2(graph, 0)
     print(f"시작 정점: 0")
     print(f"방문 순서: {result}")
 

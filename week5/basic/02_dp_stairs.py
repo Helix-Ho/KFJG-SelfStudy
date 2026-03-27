@@ -48,12 +48,12 @@ def climb_stairs(n):
     # TODO: 특별한 경우 처리
     pass
     
-    
     # TODO: dp 배열 생성 및 초기화
-    pass
+    dp = [0, 1, 2]
     
     # TODO: 작은 문제부터 차례로 계산
-    pass
+    for step in range(3, n + 1):
+        dp.append(dp[step - 1] + dp[step - 2])
     
     return dp[n]
 
